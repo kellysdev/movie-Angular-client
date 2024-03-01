@@ -138,6 +138,20 @@ export class UserRegistrationService {
   };
 
   // edit user
+  public updateUser(userDetails: any): Observable<any> {
+    let userUsername = userDetails.Username;
+    let userPassword = userDetails.Password;
+    let userEmail = userDetails.Email;
+    let userBirthday = userDetails.Birthday;
+    const token = localStorage.getItem("token");
+    console.log(userDetails);
+    return this.http.put(apiUrl + "login?Username=" + userUsername + "&Password=" + userPassword, userDetails, 
+    {
+      headers: new HttpHeaders({Authorization: "Bearer " + token,})
+    }).pipe(
+      catchError(this.handleError)
+    );
+  };
 
   // delete user
 
