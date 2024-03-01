@@ -88,4 +88,14 @@ export class UserRegistrationService {
     );
   };
 
+  // get genre data endpoint
+  getGenre(genre: string): Observable<any> {
+    const token = localStorage.getItem("token");
+    return this.http.get<any>(apiUrl + "movies/Genre/" + genre, {headers: new HttpHeaders(
+      {Authorization: "Bearer " + token, }
+    )}).pipe(
+      catchError(this.handleError)
+    );
+  };
+
 };
