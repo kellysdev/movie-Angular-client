@@ -98,4 +98,39 @@ export class UserRegistrationService {
     );
   };
 
+  // get user by username
+  getSingleUser(userDetails: any): Observable<any> {
+    let userUsername = userDetails.Username;
+    const token = localStorage.getItem("token");
+    return this.http.get<any>(apiUrl + "users/" + userUsername, {headers: new HttpHeaders(
+      {Authorization: "Bearer " + token,}
+    )}).pipe(
+      catchError(this.handleError)
+    );
+  };
+  
+
+  // get favorite movies for a user
+  getUserFavoriteMovies(userDetails: any): Observable<any> {
+    let userUsername = userDetails.Username;
+    let favoriteMovies = userDetails.FavoriteMovies;
+    const token = localStorage.getItem("token");
+    return this.http.get<any>(apiUrl + "users/" + userUsername, 
+      {
+        headers: new HttpHeaders({Authorization: "Bearer " + token,}),
+        observe: favoriteMovies
+      }
+    ).pipe(
+      catchError(this.handleError)
+    );
+  };
+
+  // add a movie to favorites
+
+  // edit user
+
+  // delete user
+
+  // delete movie from favorites
+
 };
