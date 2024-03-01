@@ -59,7 +59,7 @@ export class UserRegistrationService {
   // get all movies endpoint
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem("token");
-    return this.http.get(apiUrl + "movies", {headers: new HttpHeaders(
+    return this.http.get<any>(apiUrl + "movies", {headers: new HttpHeaders(
       { Authorization: "Bearer " + token, }
     )}).pipe(
       map(this.extractResponseData),
