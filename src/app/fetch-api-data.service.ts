@@ -78,4 +78,14 @@ export class UserRegistrationService {
     );
   };
 
+  // get director data endpoint
+  getDirector(director: string): Observable<any> {
+    const token = localStorage.getItem("token");
+    return this.http.get<any>(apiUrl + "movies/Director/" + director, {headers: new HttpHeaders(
+      {Authorization: "Bearer " + token, }
+    )}).pipe(
+      catchError(this.handleError)
+    );
+  };
+
 };
