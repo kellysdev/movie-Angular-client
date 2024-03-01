@@ -138,7 +138,7 @@ export class UserRegistrationService {
   };
 
   // edit user
-  public updateUser(userDetails: any): Observable<any> {
+  updateUser(userDetails: any): Observable<any> {
     let userUsername = userDetails.Username;
     const token = localStorage.getItem("token");
     console.log(userDetails);
