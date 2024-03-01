@@ -28,23 +28,35 @@ export class UserRegistrationService {
     return throwError(
       "Something bad happened; please try again later."
     );
-  }
+  };
 
   // Non-typed response extraction
   private extractResponseData(res: Response): any {
     const body = res;
     return body || {};
-  }
+  };
 
-  // Making the api call for the user registration endpoint
+  // api calls:
+
+  // user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + "users", userDetails).pipe(
       catchError(this.handleError)
     );
-  }
+  };
 
-    // Making the api call for the get all movies endpoint
+  // user login endpoint
+  public userLogin(userDetails: any): Observable<any> {
+    let userUsername = userDetails.Username;
+    let userPassword = userDetails.Password;
+    console.log(userDetails);
+    return this.http.post(apiUrl + "login?Username=" + userUsername + "&Password=" + userPassword, userDetails).pipe(
+      catchError(this.handleError)
+    );
+  };
+
+  // get all movies endpoint
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem("token");
     return this.http.get(apiUrl + "movies", {headers: new HttpHeaders(
@@ -53,6 +65,6 @@ export class UserRegistrationService {
       map(this.extractResponseData),
       catchError(this.handleError)
     );
-  }
+  };
 
-}
+};
