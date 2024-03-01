@@ -71,7 +71,7 @@ export class UserRegistrationService {
   // will pass the title of the movie clicked on
   getSingleMovie(title: string): Observable<any> {
     const token = localStorage.getItem("token");
-    return this.http.get<any>(apiUrl + "movies" + title, {headers: new HttpHeaders(
+    return this.http.get<any>(apiUrl + "movies/" + title, {headers: new HttpHeaders(
       {Authorization: "Bearer " + token, }
     )}).pipe(
       catchError(this.handleError)
