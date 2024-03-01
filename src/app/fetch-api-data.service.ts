@@ -126,6 +126,16 @@ export class UserRegistrationService {
   };
 
   // add a movie to favorites
+  addFavoriteMovie(movie: string, userDetails: any): Observable<any> {
+    let userUsername = userDetails.Username;
+    const token = localStorage.getItem("token");
+    return this.http.post(apiUrl + "users/" + userUsername + "/movies/" + movie, 
+    {
+      headers: new HttpHeaders({Authorization: "Bearer "+ token,})
+    }).pipe(
+      catchError(this.handleError)
+    );
+  };
 
   // edit user
 
