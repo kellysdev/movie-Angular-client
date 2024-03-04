@@ -24,18 +24,18 @@ export class UserLoginFormComponent implements OnInit {
   // call login function from API service
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-      let data = result.json();
-      if (data.user) {
-        localStorage.setItem("user", data.user);
-        localStorage.setItem("token", data.token);
+      if (result.user) {
+        localStorage.setItem("user", result.user);
+        localStorage.setItem("token", result.token);
         this.dialogRef.close(); // closes modal on success
         // snackbar alerts user
         this.snackBar.open(result, "Login successful", {
           duration: 2000
         });
-        console.log(data.user, "success");
       } else {
-        console.log("Something went wrong.");
+        this.snackBar.open(result, "Something went wrong", {
+          duration: 2000
+        });
       }
     });
   }
