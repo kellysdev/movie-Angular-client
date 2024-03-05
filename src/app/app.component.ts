@@ -33,7 +33,7 @@ export class AppComponent {
     });
   }
 
-  openMovieDialog(): void {
+  openMoviesDialog(): void {
     this.dialog.open(MovieCardComponent, {
       width: "500px"
     });
