@@ -4,7 +4,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 // import backend API
-import { UserRegistrationService } from "../fetch-api-data.service";
+import { FetchApiDataService } from "../fetch-api-data.service";
 
 @Component({
   selector: "app-user-login-form",
@@ -15,7 +15,7 @@ export class UserLoginFormComponent implements OnInit {
  @Input() userData = { Username: "", Password: "" };
 
  constructor(
-  public fetchApiData: UserRegistrationService,
+  public fetchApiData: FetchApiDataService,
   public dialogRef: MatDialogRef<UserLoginFormComponent>,
   public snackBar: MatSnackBar ) { }
 
