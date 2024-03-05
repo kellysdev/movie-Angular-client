@@ -3,6 +3,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
+import { RouterModule, Routes } from "@angular/router";
 
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
@@ -18,6 +19,12 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
+const appRoutes: Routes = [
+  { path: "welcome", title: "Welcome", component: WelcomePageComponent },
+  { path: "movies", title: "Movies", component: MovieCardComponent },
+  { path: "", title: "Welcome", redirectTo: "welcome", pathMatch: "prefix" },
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +34,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     WelcomePageComponent
   ],
   imports: [
+    [RouterModule.forRoot(appRoutes)],
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
