@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -15,6 +16,7 @@ export class UserLoginFormComponent implements OnInit {
  @Input() userData = { Username: "", Password: "" };
 
  constructor(
+  private router: Router,
   public fetchApiData: FetchApiDataService,
   public dialogRef: MatDialogRef<UserLoginFormComponent>,
   public snackBar: MatSnackBar ) { }
@@ -32,6 +34,7 @@ export class UserLoginFormComponent implements OnInit {
         this.snackBar.open(result, "Login successful", {
           duration: 2000
         });
+        this.router.navigate(["movies"]);
       } else {
         this.snackBar.open(result, "Something went wrong", {
           duration: 2000
