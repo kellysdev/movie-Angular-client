@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, provideHttpClient, withFetch } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
@@ -54,7 +54,8 @@ const appRoutes: Routes = [
     MatIconModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
