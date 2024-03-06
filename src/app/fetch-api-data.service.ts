@@ -99,16 +99,14 @@ export class FetchApiDataService {
   };
 
   // get user by username
-  getSingleUser(userDetails: any): Observable<any> {
-    let userUsername = userDetails.Username;
+  getSingleUser(username: string): Observable<any> {
     const token = localStorage.getItem("token");
-    return this.http.get<any>(apiUrl + "users/" + userUsername, {headers: new HttpHeaders(
+    return this.http.get<any>(apiUrl + "users/" + username, {headers: new HttpHeaders(
       {Authorization: "Bearer " + token,}
     )}).pipe(
       catchError(this.handleError)
     );
   };
-  
 
   // get favorite movies for a user
   getUserFavoriteMovies(userDetails: any): Observable<any> {

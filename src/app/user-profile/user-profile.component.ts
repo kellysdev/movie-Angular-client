@@ -9,7 +9,7 @@ import { FetchApiDataService } from "../fetch-api-data.service";
 })
 export class UserProfileComponent {
   userDetails: any = {};
-  favoriteMovies: any[] = [];
+  favoriteMovies: any = [];
 
   constructor(
     public dialog: MatDialog,
@@ -20,15 +20,21 @@ export class UserProfileComponent {
     this.getUser();
   }
 
-  getUser(): void {
-    this.userDetails = JSON.parse(localStorage.getItem("user"));
-    console.log(this.userDetails);
-    
-    this.fetchApiData.getUserFavoriteMovies(this.userDetails).subscribe((resp: any) => {
-      this.favoriteMovies = resp;
-      console.log(this.favoriteMovies);
-      return this.favoriteMovies;
+  // the user in localStorage is null,
+  // appears as [object Object] in Chrome Dev Tools Application tab under Local Storage
+  // I am also getting an error that localStorage is not defined
+  getUser(): Promise<any> {
+    const storedUser: any = localStorage.getItem("user");
+    const username = JSON.stringify(storedUser.Username);
+    this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
+      this.userDetails = resp;
+      return this.userDetails;
+      console.log(this.userDetails);
     })
+
+    this.favoriteMovies = this.userDetails.FavoriteMovies;
+    console.log(this.favoriteMovies);
+    return this.userDetails, this.favoriteMovies;
   }
 
 }
