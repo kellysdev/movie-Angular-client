@@ -24,6 +24,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const appRoutes: Routes = [
   { path: "welcome", title: "Welcome", component: WelcomePageComponent },
   { path: "movies", title: "Movies", component: MovieCardComponent },
+  { path: "profile", title: "Profile", component: UserProfileComponent},
   { path: "", title: "Welcome", redirectTo: "welcome", pathMatch: "prefix" },
 ];
 
