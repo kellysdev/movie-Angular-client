@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+
 import { FetchApiDataService } from "../fetch-api-data.service";
 
 @Component({
@@ -8,7 +10,9 @@ import { FetchApiDataService } from "../fetch-api-data.service";
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  constructor (public fetchApiData: FetchApiDataService) { }
+  constructor (
+    private router: Router,
+    public fetchApiData: FetchApiDataService) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -20,6 +24,10 @@ export class MovieCardComponent {
       console.log(this.movies);
       return this.movies;
     });
+  }
+
+  goToProfile(): void {
+    this.router.navigate(["profile"]);
   }
 
 }
