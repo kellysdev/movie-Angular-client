@@ -20,14 +20,14 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const appRoutes: Routes = [
   { path: "welcome", title: "Welcome", component: WelcomePageComponent },
   { path: "movies", title: "Movies", component: MovieCardComponent },
-  { path: "profile", title: "Profile", component: UserProfileComponent},
+  { path: "profile", title: "Profile", component: ProfilePageComponent},
   { path: "", title: "Welcome", redirectTo: "welcome", pathMatch: "prefix" },
 ];
 
@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    UserProfileComponent,
+    ProfilePageComponent,
     DirectorViewComponent,
     ToolbarComponent
   ],

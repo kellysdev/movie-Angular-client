@@ -3,11 +3,11 @@ import { MatDialog } from "@angular/material/dialog";
 import { FetchApiDataService } from "../fetch-api-data.service";
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrl: "./user-profile.component.scss"
+  selector: "app-profile-page",
+  templateUrl: "./profile-page.component.html",
+  styleUrl: "./profile-page.component.scss"
 })
-export class UserProfileComponent {
+export class ProfilePageComponent {
   userDetails: any = {};
   favoriteMovies: any = [];
 
