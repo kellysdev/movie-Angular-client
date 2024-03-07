@@ -23,6 +23,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MainViewComponent } from './main-view/main-view.component';
 
 const appRoutes: Routes = [
   { path: "welcome", title: "Welcome", component: WelcomePageComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     ProfilePageComponent,
     DirectorViewComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    MainViewComponent
   ],
   imports: [
     [RouterModule.forRoot(appRoutes)],
