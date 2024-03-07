@@ -1,1 +1,7 @@
-<p>main-view works!</p>
+<app-toolbar />
+<div class="movie-card-wrapper">
+  @for (movie of movies; track movie.id) {
+    <app-movie-card />
+  }
+  @empty {<p>No movies found.</p>}
+</div>
