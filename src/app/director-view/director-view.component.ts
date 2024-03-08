@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-director-view",
@@ -6,5 +6,14 @@ import { Component } from "@angular/core";
   styleUrl: "./director-view.component.scss"
 })
 export class DirectorViewComponent {
+  @Input() director = {
+    Name: ",",
+    Birth: "",
+    Death: "",
+    Bio: ""
+  };
 
+  constructor( ) { }
+
+  ngOnInit(): void { }
 }
