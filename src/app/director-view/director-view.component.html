@@ -1,1 +1,10 @@
-<p>director-view works!</p>
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-title>{{move.Director.Name}}</mat-card-title>
+    <mat-card-subtitle>{{movie.Director.Birth}} - {{movie.Director.Death}}</mat-card-subtitle>
+    <p>{{movie.Director.Bio}}</p>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
