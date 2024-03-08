@@ -1,5 +1,4 @@
-import { Component } from "@angular/core";
-
+import { Component, Input } from "@angular/core";
 import { FetchApiDataService } from "../fetch-api-data.service";
 
 @Component({
@@ -8,13 +7,29 @@ import { FetchApiDataService } from "../fetch-api-data.service";
   styleUrl: "./movie-card.component.scss"
 })
 export class MovieCardComponent {
+  @Input() movie = {
+    _id: "",
+    Title: "",
+    Description: "",
+    Genre: {
+      Name: "",
+      Description: ""
+    },
+    Director: {
+      Name: "",
+      Bio: "",
+      Birth: "",
+      Death: ""
+    },
+    ImagePath: "",
+    Featured: false,
+    Actors: [],
+    ReleaseDate: ""
+  };
 
   constructor (
     public fetchApiData: FetchApiDataService) { }
 
-  ngOnInit(): void {
-    
-  }
-
+  ngOnInit(): void { }
 
 }
