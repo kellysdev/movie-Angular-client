@@ -7,7 +7,7 @@ import { FetchApiDataService } from "../fetch-api-data.service";
   templateUrl: "./profile-page.component.html",
   styleUrl: "./profile-page.component.scss"
 })
-export class ProfilePageComponent {
+export class ProfilePageComponent implements OnInit {
   userDetails: any = {};
   favoriteMovies: any = [];
 
@@ -20,16 +20,14 @@ export class ProfilePageComponent {
     this.getUser();
   }
 
-  // the user in localStorage is null,
-  // appears as [object Object] in Chrome Dev Tools Application tab under Local Storage
-  // I am also getting an error that localStorage is not defined
+  // the username in localStorage is reading as null, in the console it is a string
+  // receiving error in the console that localStorage is not defined
   getUser(): Promise<any> {
-    const storedUser: any = localStorage.getItem("user");
-    const username = JSON.stringify(storedUser.Username);
+    const username: any = localStorage.getItem("username");
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
-      return this.userDetails;
       console.log(this.userDetails);
+      return this.userDetails;
     })
 
     this.favoriteMovies = this.userDetails.FavoriteMovies;
