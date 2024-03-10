@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+
 import { FetchApiDataService } from "../fetch-api-data.service";
+import { DataService } from "../data.service";
 
 @Component({
   selector: "app-profile-page",
@@ -13,17 +15,19 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public fetchApiData: FetchApiDataService) {  
+    public fetchApiData: FetchApiDataService,
+    public dataService: DataService ) {  
   }
 
   ngOnInit(): void { 
     this.getUser();
   }
 
-  // the username in localStorage is reading as null, in the console it is a string
-  // receiving error in the console that localStorage is not defined
+  // retrieve username from storage and use to fetch and set userDetails
   getUser(): Promise<any> {
-    const username: any = localStorage.getItem("username");
+    const storedUsername = this.dataService.getUsername;
+    const username = storedUsername();
+    console.log(username);
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
       console.log(this.userDetails);

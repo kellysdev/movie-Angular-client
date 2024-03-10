@@ -4,8 +4,9 @@ import { Router } from "@angular/router";
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
-// import backend API
+// import services
 import { FetchApiDataService } from "../fetch-api-data.service";
+import { DataService } from "../data.service";
 
 @Component({
   selector: "app-user-login-form",
@@ -18,6 +19,7 @@ export class UserLoginFormComponent implements OnInit {
  constructor(
   private router: Router,
   public fetchApiData: FetchApiDataService,
+  public dataService: DataService,
   public dialogRef: MatDialogRef<UserLoginFormComponent>,
   public snackBar: MatSnackBar ) { }
 
@@ -27,7 +29,8 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       if (result.user) {
-        localStorage.setItem("username", JSON.stringify(result.user.Username));
+        const username = JSON.stringify(result.user.Username);
+        this.dataService.setUsername(username);
         localStorage.setItem("token", result.token);
         this.dialogRef.close(); // closes modal on success
         // snackbar alerts user

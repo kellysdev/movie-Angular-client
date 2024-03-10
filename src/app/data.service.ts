@@ -6,10 +6,15 @@ import { Injectable } from "@angular/core";
 export class DataService {
 
   constructor() { }
-  
+
+  // set Username in localStorage
+  setUsername(username: string): void {
+    localStorage.setItem("username", JSON.parse(username));
+  }
+
   // retrieve Username from localStorage
-  getUsername(): string | null {
+  getUsername(): any {
     const username = localStorage.getItem("username");
-    return username ? JSON.parse(username) : null;
+    return username;
   }
 }
