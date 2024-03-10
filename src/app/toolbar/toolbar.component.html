@@ -9,7 +9,7 @@
   aria-label="icon-button to navigate to movies page">
   <mat-icon>home</mat-icon>
   </button>
-  
+
   <button 
   mat-icon-button 
   class="profile-icon"
@@ -18,7 +18,11 @@
   <mat-icon>person</mat-icon>
   </button>
 
-  <button mat-icon-button class="logout-icon" aria-label="icon-button to logout">
+  <button 
+    mat-icon-button 
+    class="logout-icon" 
+    (click)="logout()"
+    aria-label="icon-button to logout">
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

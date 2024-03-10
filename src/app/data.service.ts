@@ -17,4 +17,9 @@ export class DataService {
     const username = localStorage.getItem("username");
     return username;
   }
+
+  // logout: remove Username and token from localStorage
+  logout(): void {
+    localStorage.clear();
+  }
 }
