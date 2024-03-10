@@ -2,6 +2,8 @@ import { Component, Input } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
+import { DataService } from "../data.service";
+
 import { DirectorViewComponent } from "../director-view/director-view.component";
 
 @Component({
@@ -11,6 +13,7 @@ import { DirectorViewComponent } from "../director-view/director-view.component"
 })
 export class MovieCardComponent {
   dialogConfig = new MatDialogConfig();
+  favoriteMovies: any = [];
 
   @Input() movie = {
     _id: "",
@@ -34,9 +37,18 @@ export class MovieCardComponent {
 
   constructor (
     public fetchApiData: FetchApiDataService,
+    public dataService: DataService,
     public dialog: MatDialog) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // fetch the array of favorite movies
+    const username: string = this.dataService.getUsername();
+    this.fetchApiData.getUserFavoriteMovies(username).subscribe((resp: any) => {
+      this.favoriteMovies = resp;
+      console.log(this.favoriteMovies);
+      return this.favoriteMovies;
+    })
+   }
 
   // open Director dialog and pass Director data to DirectorView component
   openDirectorDialog() {
