@@ -12,5 +12,9 @@ export class ToolbarComponent {
   goToProfile(): void {
     this.router.navigate(["profile"]);
   }
+  
+  goToMovies(): void {
+    this.router.navigate(["movies"]);
+  }
 
 }
