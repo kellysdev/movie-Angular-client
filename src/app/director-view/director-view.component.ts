@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
@@ -7,33 +7,15 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
   styleUrl: "./director-view.component.scss"
 })
 export class DirectorViewComponent implements OnInit {
-  Director: object;
-
-  @Input() movie = {
-    _id: "",
-    Title: "",
-    Description: "",
-    Genre: {
-      Name: "",
-      Description: ""
-    },
-    Director: {
-      Name: "",
-      Bio: "",
-      Birth: "",
-      Death: ""
-    },
-    ImagePath: "",
-    Featured: false,
-    Actors: [],
-    ReleaseDate: ""
-  };
+  Director: any;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: {Director: any}
-   ) { 
-    this.Director = this.movie.Director;
+    @Inject(MAT_DIALOG_DATA) public data: any
+   ) { }
+
+  ngOnInit(): void { 
+    this.Director = this.data;
+    console.log(this.Director);
    }
 
-  ngOnInit(): void { }
 }

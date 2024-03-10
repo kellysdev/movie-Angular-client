@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
@@ -10,6 +10,8 @@ import { DirectorViewComponent } from "../director-view/director-view.component"
   styleUrl: "./movie-card.component.scss"
 })
 export class MovieCardComponent {
+  dialogConfig = new MatDialogConfig();
+
   @Input() movie = {
     _id: "",
     Title: "",
@@ -38,11 +40,11 @@ export class MovieCardComponent {
 
   // open Director dialog and pass Director data to DirectorView component
   openDirectorDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
+    this.dialogConfig.data = {
       Director: this.movie.Director
     };
-    this.dialog.open(DirectorViewComponent, dialogConfig);
+    this.dialog.open(DirectorViewComponent, this.dialogConfig);
+    console.log(this.dialogConfig.data);
   }
 
 }
