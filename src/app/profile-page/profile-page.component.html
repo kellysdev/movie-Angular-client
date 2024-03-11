@@ -45,26 +45,32 @@
   </div>
 
 <div class="profile-movies-wrapper" style="display: flex;">
-  <mat-card class="profile-movie-cards"
-    *ngFor="let movie of favoriteMovies; let i=index"
-  >
-    <mat-dialog-content>
-      <mat-card-title>{{movie.Title}}</mat-card-title>
-      <mat-card-subtitle>
-        Directed by: {{movie.Director.Name}}
-      </mat-card-subtitle>
-      <img src={{movie.ImagePath}} style="height: 50vh;" />
-      <mat-card-actions>
-        <button
-          mat-button
-          color="primary"
-        >Genre</button>
-        <button
-          mat-button
-          color="primary"
-        >Synopsis</button>
-        <mat-icon>favorite_border</mat-icon>
-      </mat-card-actions>
-    </mat-dialog-content>
-  </mat-card>
+  <h2>Favorite Movies</h2>
+  @if(favoriteMovies == undefined) {
+    <p>Add movies to your list.</p>
+  }
+  @else {
+    <mat-card class="profile-movie-cards"
+      *ngFor="let movie of favoriteMovies; let i=index"
+    >
+      <mat-dialog-content>
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+        <mat-card-subtitle>
+          Directed by: {{movie.Director.Name}}
+        </mat-card-subtitle>
+        <img src={{movie.ImagePath}} style="height: 50vh;" />
+        <mat-card-actions>
+          <button
+            mat-button
+            color="primary"
+          >Genre</button>
+          <button
+            mat-button
+            color="primary"
+          >Synopsis</button>
+          <mat-icon>favorite_border</mat-icon>
+        </mat-card-actions>
+      </mat-dialog-content>
+    </mat-card>
+  }
 </div>
