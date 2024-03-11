@@ -14,8 +14,8 @@ export class DirectorViewComponent implements OnInit {
    ) { }
 
   ngOnInit(): void { 
-    this.Director = this.data;
-    console.log(this.Director);
+    //
+    this.Director = this.data.Director;
    }
 
 }
