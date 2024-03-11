@@ -6,7 +6,7 @@ import { FetchApiDataService } from "../fetch-api-data.service";
 import { DataService } from "../data.service";
 
 import { DirectorViewComponent } from "../director-view/director-view.component";
-import { Observable } from "rxjs";
+import { GenreViewComponent } from "../genre-view/genre-view.component";
 
 @Component({
   selector: "app-movie-card",
@@ -85,6 +85,14 @@ export class MovieCardComponent {
     };
     this.dialog.open(DirectorViewComponent, this.dialogConfig);
     // console.log(this.dialogConfig.data);
+  }
+
+  // open Genre dialog and pass Genre data to GenreView component
+  openGenreDialog() {
+    this.dialogConfig.data = {
+      Genre: this.movie.Genre
+    };
+    this.dialog.open(GenreViewComponent, this.dialogConfig);
   }
 
 }
