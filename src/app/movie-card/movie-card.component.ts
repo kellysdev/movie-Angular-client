@@ -1,10 +1,12 @@
 import { Component, Input } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
 import { DataService } from "../data.service";
 
 import { DirectorViewComponent } from "../director-view/director-view.component";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-movie-card",
@@ -13,7 +15,10 @@ import { DirectorViewComponent } from "../director-view/director-view.component"
 })
 export class MovieCardComponent {
   dialogConfig = new MatDialogConfig();
-  favoriteMovies: any = [];
+  userDetails: any = {}; // user object
+  username: string = ""; // userDetails.Username
+  favoriteMovies: any = []; // userDetails.FavoriteMovies
+  isThisAFavorite: boolean = false;
 
   @Input() movie = {
     _id: "",
@@ -38,17 +43,40 @@ export class MovieCardComponent {
   constructor (
     public fetchApiData: FetchApiDataService,
     public dataService: DataService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    // fetch the array of favorite movies
+    // fetch user
     const username: string = this.dataService.getUsername();
-    this.fetchApiData.getUserFavoriteMovies(username).subscribe((resp: any) => {
-      this.favoriteMovies = resp;
-      console.log(this.favoriteMovies);
-      return this.favoriteMovies;
+    this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
+      this.userDetails = resp;
+      return this.userDetails;
     })
-   }
+
+    // set the username and favorite movies array
+    this.getDetails();
+
+    // set whether this movie is a favorite or not
+    this.isMovieInFavorites();
+    
+  }
+
+  // get the username and favorite movies array from the user object
+  getDetails() {
+    this.username = this.userDetails.Username;
+    this.favoriteMovies = this.userDetails.FavoriteMovies ?
+      this.userDetails.FavoriteMovies 
+      : [];
+    return this.username, this.favoriteMovies;
+  }
+
+  // determine whether this movie is in the favorite movies array
+  isMovieInFavorites() {
+    if (this.favoriteMovies.length > 0 && this.favoriteMovies.includes(this.movie)) {
+      this.isThisAFavorite = true;
+    }
+  }
 
   // open Director dialog and pass Director data to DirectorView component
   openDirectorDialog() {
@@ -56,7 +84,7 @@ export class MovieCardComponent {
       Director: this.movie.Director
     };
     this.dialog.open(DirectorViewComponent, this.dialogConfig);
-    console.log(this.dialogConfig.data);
+    // console.log(this.dialogConfig.data);
   }
 
 }
