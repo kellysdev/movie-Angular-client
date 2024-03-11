@@ -6,7 +6,6 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
   templateUrl: "./synopsis-view.component.html",
   styleUrl: "./synopsis-view.component.scss"
 })
-export class SynopsisViewComponent {
 export class SynopsisViewComponent implements OnInit {
   Synopsis: any;
 
