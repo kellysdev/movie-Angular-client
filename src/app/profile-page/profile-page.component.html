@@ -44,10 +44,9 @@
     >Submit</button>
   </div>
 
-<div style="display: flex;">
-  <mat-card
+<div class="profile-movies-wrapper" style="display: flex;">
+  <mat-card class="profile-movie-cards"
     *ngFor="let movie of favoriteMovies; let i=index"
-    style="flex: 1 1 auto;"
   >
     <mat-dialog-content>
       <mat-card-title>{{movie.Title}}</mat-card-title>
