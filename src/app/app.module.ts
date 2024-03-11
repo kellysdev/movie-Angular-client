@@ -25,6 +25,7 @@ import { DirectorViewComponent } from './director-view/director-view.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { GenreViewComponent } from './genre-view/genre-view.component';
+import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
 
 const appRoutes: Routes = [
   { path: "welcome", title: "Welcome", component: WelcomePageComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     DirectorViewComponent,
     ToolbarComponent,
     MainViewComponent,
-    GenreViewComponent
+    GenreViewComponent,
+    SynopsisViewComponent
   ],
   imports: [
     [RouterModule.forRoot(appRoutes)],
