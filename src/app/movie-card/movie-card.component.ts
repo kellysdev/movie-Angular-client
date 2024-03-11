@@ -7,6 +7,7 @@ import { DataService } from "../data.service";
 
 import { DirectorViewComponent } from "../director-view/director-view.component";
 import { GenreViewComponent } from "../genre-view/genre-view.component";
+import { SynopsisViewComponent } from "../synopsis-view/synopsis-view.component";
 
 @Component({
   selector: "app-movie-card",
@@ -93,6 +94,13 @@ export class MovieCardComponent {
       Genre: this.movie.Genre
     };
     this.dialog.open(GenreViewComponent, this.dialogConfig);
+  }
+
+  openSynopsisDialog() {
+    this.dialogConfig.data = {
+      Synopsis: this.movie
+    };
+    this.dialog.open(SynopsisViewComponent, this.dialogConfig);
   }
 
 }
