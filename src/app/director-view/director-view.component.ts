@@ -14,7 +14,7 @@ export class DirectorViewComponent implements OnInit {
    ) { }
 
   ngOnInit(): void { 
-    //
+    // pass the data from MovieCard to this component's Director variable
     this.Director = this.data.Director;
    }
 
