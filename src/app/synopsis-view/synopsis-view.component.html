@@ -1,1 +1,11 @@
-<p>synopsis-view works!</p>
+<h2 mat-dialog-title>{{ Synopsis.Title }}</h2>
+<mat-dialog-content>
+  <p>{{ Synopsis.ReleaseDate }}<br>
+    Genre: {{ Synopsis.Genre.Name }}<br>
+    Director: {{ Synopsis.Director.Name }}<br>
+    Staring: {{ Synopsis.Actors }}</p>
+  <p>{{ Synopsis.Description }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-buton mat-dialog-close>Close</button>
+</mat-dialog-actions>
