@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: "app-synopsis-view",
@@ -6,5 +7,15 @@ import { Component } from "@angular/core";
   styleUrl: "./synopsis-view.component.scss"
 })
 export class SynopsisViewComponent {
+export class SynopsisViewComponent implements OnInit {
+  Synopsis: any;
 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  ngOnInit(): void {
+    // pass the data from MovieCard to this component's Synopsis variable
+    this.Synopsis = this.data.Synopsis;
+  }
 }
