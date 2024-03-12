@@ -129,7 +129,7 @@ export class FetchApiDataService {
     const token = localStorage.getItem("token");
     return this.http.post(apiUrl + "users/" + userUsername + "/movies/" + movie, 
     {
-      headers: new HttpHeaders({Authorization: "Bearer "+ token,})
+      headers: new HttpHeaders().set("Authorization", `Bearer $`)
     }).pipe(
       catchError(this.handleError)
     );
