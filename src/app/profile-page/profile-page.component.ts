@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
@@ -11,6 +11,7 @@ import { DataService } from "../data.service";
 })
 export class ProfilePageComponent implements OnInit {
   userDetails: any = {};
+  favoriteMovieIds: any = [];
   favoriteMovies: any = [];
 
   constructor(
@@ -24,19 +25,15 @@ export class ProfilePageComponent implements OnInit {
   }
 
   // retrieve username from storage and use to fetch and set userDetails
-  getUser(): Promise<any> {
+  // retrive array of favorite movie ids from user object
+  getUser(): void {
     const storedUsername = this.dataService.getUsername;
     const username = storedUsername();
-    console.log(username);
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
-      console.log(this.userDetails);
-      return this.userDetails;
+      this.favoriteMovieIds = this.userDetails.FavoriteMovies;
+      return this.userDetails, this.favoriteMovieIds;
     })
-
-    this.favoriteMovies = this.userDetails.FavoriteMovies;
-    console.log(this.favoriteMovies);
-    return this.userDetails, this.favoriteMovies;
   }
 
 }
