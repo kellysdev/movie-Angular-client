@@ -10,9 +10,30 @@ import { DataService } from "../data.service";
   styleUrl: "./profile-page.component.scss"
 })
 export class ProfilePageComponent implements OnInit {
-  userDetails: any = {};
-  favoriteMovieIds: any = [];
-  favoriteMovies: any = [];
+  userDetails: any = {}; // user object
+  favoriteMovieIds: string[] = []; // array of favorite movie id's from user object
+  movies: object[] = []; // all movies
+  favoriteMovies: any = []; // favorite movie objects
+
+  @Input() movie = {
+    _id: "",
+    Title: "",
+    Description: "",
+    Genre: {
+      Name: "",
+      Description: ""
+    },
+    Director: {
+      Name: "",
+      Bio: "",
+      Birth: "",
+      Death: ""
+    },
+    ImagePath: "",
+    Featured: false,
+    Actors: [],
+    ReleaseDate: ""
+  };
 
   constructor(
     public dialog: MatDialog,
@@ -22,17 +43,33 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void { 
     this.getUser();
+    this.getMovies();
   }
 
   // retrieve username from storage and use to fetch and set userDetails
   // retrive array of favorite movie ids from user object
   getUser(): void {
-    const storedUsername = this.dataService.getUsername;
-    const username = storedUsername();
+    const username = this.dataService.getUsername();
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
       this.favoriteMovieIds = this.userDetails.FavoriteMovies;
-      return this.userDetails, this.favoriteMovieIds;
+      this.getFavoriteMovies();
+      // return this.userDetails
+    })
+  }
+
+  getMovies(): void {
+    // fetch movies
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+      // return this.movies;
+    })
+  }
+
+  getFavoriteMovies(): void {
+    // return an array of objects that contains a movie object for each movie id string in the favoriteMovieIds array
+    this.favoriteMovies = this.favoriteMovieIds.map(favoriteMovieId => {
+      return this.movies.find(movie => this.movie._id === favoriteMovieId);
     })
   }
 
