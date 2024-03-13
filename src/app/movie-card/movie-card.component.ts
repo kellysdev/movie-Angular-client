@@ -96,11 +96,29 @@ export class MovieCardComponent {
     this.dialog.open(GenreViewComponent, this.dialogConfig);
   }
 
+  // open movie Synopsis dialog and pass movie data to SynopsisView component
   openSynopsisDialog() {
     this.dialogConfig.data = {
       Synopsis: this.movie
     };
     this.dialog.open(SynopsisViewComponent, this.dialogConfig);
+  }
+
+  // add a movie to this users list of favorite movies
+  // get a 401 (unauthorized) error in console from POST request
+  addToFavorites() {
+    this.fetchApiData.addFavoriteMovie(this.movie._id, this.userDetails).subscribe((result) => {
+      if (result) {
+        this.isThisAFavorite = true;
+        console.log(this.favoriteMovies);
+        console.log(result);
+        this.snackBar.open(this.movie.Title, "Added to Favorite Movies", {
+          duration: 2000
+        });
+      } else {
+        console.log(Error);
+      }
+    });
   }
 
 }
