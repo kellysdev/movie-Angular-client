@@ -4,7 +4,7 @@ export interface Movie {
   Description: string;
   Genre: {
     Name: string;
-    Description: string
+    Description: string;
   };
   Director: {
     Name: string;
