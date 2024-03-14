@@ -46,14 +46,14 @@
 
 <div class="profile-movies-wrapper" style="display: flex;">
   <h2>Favorite Movies</h2>
-  @if(favoriteMovies == undefined) {
+  @if(favoriteMovies == undefined || favoriteMovies.length === 0) {
     <p>Add movies to your list.</p>
   }
   @else {
     <div class="profile-movie-card-wrapper">
-      @for (favoriteMovie of favoriteMovies; track "movie._id") {
+      @for (movie of favoriteMovies; track "movie._id") {
         <app-movie-card
-          [movie]="favoriteMovies"
+          [movie]="movie"
         />
       }
     </div>
