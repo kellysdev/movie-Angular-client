@@ -1,61 +1,67 @@
-<app-toolbar></app-toolbar>
-<div>
-    <h2>Account Information</h2>
-    <p><b>Username:</b> {{userDetails.Username}}</p>
-    <p><b>Email:</b> {{userDetails.Email}}</p>
-    <p><b>Birthday:</b> {{userDetails.Birthday | date}}</p>
-  </div>
-  <div>
-    <h2>Update Account Information</h2>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        placeholder="Username"
-        type="text"
-        name="Username"
-      >
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        placeholder="Password"
-        type="password"
-        name="Password"
-      >
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        placeholder="Email"
-        type="email"
-        name="Email"
-      >
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        placeholder="Birthday"
-        type="date"
-        name="Birthday"
-      >
-    </mat-form-field>
-    <button
-      mat-raised-button
-    >Submit</button>
-  </div>
+<div class="profile-view">
+  <app-toolbar></app-toolbar>
+  <div class="profile-wrapper">
+    <div class="account-wrapper">
+      <div class="account-info">
+          <h2>Account Information</h2>
+          <p><b>Username:</b> {{userDetails.Username}}</p>
+          <p><b>Email:</b> {{userDetails.Email}}</p>
+          <p><b>Birthday:</b> {{userDetails.Birthday | date}}</p>
+        </div>
+        <div class="update-info">
+          <h2>Update Account Information</h2>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Username"
+              type="text"
+              name="Username"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Password"
+              type="password"
+              name="Password"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Email"
+              type="email"
+              name="Email"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Birthday"
+              type="date"
+              name="Birthday"
+            >
+          </mat-form-field>
+          <button
+            mat-raised-button
+          >Submit</button>
+        </div>
+      </div>
 
-<div class="profile-movies-wrapper" style="display: flex;">
-  <h2>Favorite Movies</h2>
-  @if(favoriteMovies == undefined || favoriteMovies.length === 0) {
-    <p>Add movies to your list.</p>
-  }
-  @else {
-    <div class="profile-movie-card-wrapper">
-      @for (movie of favoriteMovies; track "movie._id") {
-        <app-movie-card
-          [movie]="movie"
-        />
+    <div class="profile-movies-wrapper">
+      <h2>Favorite Movies</h2>
+      @if(favoriteMovies == undefined || favoriteMovies.length === 0) {
+        <p>Add movies to your list.</p>
+      }
+      @else {
+        <div class="profile-movie-card-wrapper">
+          @for (movie of favoriteMovies; track "movie._id") {
+            <app-movie-card
+              [movie]="movie"
+            />
+          }
+        </div>
       }
     </div>
-  }
+  </div>
 </div>
