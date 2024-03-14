@@ -106,4 +106,21 @@ export class MovieCardComponent {
     });
   }
 
+  removeFromFavorites() {
+    this.fetchApiData.removeFavoriteMovie(this.movie._id, this.userDetails).subscribe({
+      next: (result => {
+        this.isThisAFavorite = false;
+        this.snackBar.open(this.movie.Title, "Removed from Favorite Movies", {
+          duration: 2000
+        });
+      }),
+      error: (error) => {
+        console.log("Error removing from favorites:", error);
+        this.snackBar.open("An error occurred.", "OK", {
+          duration: 2000
+        });
+      }
+    });
+  }
+
 }
