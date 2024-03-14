@@ -19,7 +19,7 @@ export class MovieCardComponent {
   userDetails: any = {}; // user object
   username: string = ""; // userDetails.Username
   favoriteMovies: any = []; // userDetails.FavoriteMovies
-  isThisAFavorite: boolean = false;
+  isThisAFavorite: boolean = false; // is this movie in the favoriteMovies array
 
   @Input() movie = {
     _id: "",
@@ -48,7 +48,7 @@ export class MovieCardComponent {
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    // fetch user
+    // fetch user and set user, username and favoriteMovies
     const username: string = this.dataService.getUsername();
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
