@@ -8,7 +8,6 @@ import { DataService } from "../data.service";
 import { DirectorViewComponent } from "../director-view/director-view.component";
 import { GenreViewComponent } from "../genre-view/genre-view.component";
 import { SynopsisViewComponent } from "../synopsis-view/synopsis-view.component";
-import { error } from "node:console";
 
 @Component({
   selector: "app-movie-card",
@@ -57,20 +56,8 @@ export class MovieCardComponent {
       this.favoriteMovies = resp.FavoriteMovies || [];
       this.isMovieInFavorites();
     })
-
-    // set the username and favorite movies array
-    // this.getDetails();
     
   }
-
-  // get the username and favorite movies array from the user object
-  // getDetails() {
-  //   this.username = this.userDetails.Username;
-  //   this.favoriteMovies = this.userDetails.FavoriteMovies ?
-  //     this.userDetails.FavoriteMovies 
-  //     : [];
-  //   return this.username, this.favoriteMovies;
-  // }
 
   // determine whether this movie is in the favorite movies array
   isMovieInFavorites() {
