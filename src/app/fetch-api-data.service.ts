@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { catchError } from "rxjs";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 
 // Declare the api url that will provide data for the client app
 const apiUrl = "https://popopolis-f7a904c7cad0.herokuapp.com/";
@@ -127,10 +127,14 @@ export class FetchApiDataService {
   addFavoriteMovie(movie: string, userDetails: any): Observable<any> {
     let userUsername = userDetails.Username;
     const token = localStorage.getItem("token");
-    return this.http.post(apiUrl + "users/" + userUsername + "/movies/" + movie, 
-    {
-      headers: new HttpHeaders().set("Authorization", `Bearer $`)
+    console.log(`adding favorite movie: token ${token}, movie ${movie}, username ${userUsername}`);
+    return this.http.post(apiUrl + "users/" + userUsername + "/movies/" + movie, {}, {
+      headers: new HttpHeaders({
+        "Authorization": `Bearer ${token}`
+      }),
+      responseType: "text"
     }).pipe(
+      tap(response => console.log(response)),
       catchError(this.handleError)
     );
   };
