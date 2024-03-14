@@ -30,6 +30,7 @@
       @if(isThisAFavorite) {
         <button
           mat-button
+          (click)="removeFromFavorites()"
           color="primary"
           aria-label="Button to remove movie from favorites."
         >
