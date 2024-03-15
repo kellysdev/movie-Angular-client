@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -15,13 +15,7 @@ import { DataService } from "../data.service";
 export class ProfilePageComponent implements OnInit {
   userDetails: any = {}; // user object
   favoriteMovies: any[] = []; // favorite movie objects
-
-  updateUserForm = new FormGroup({
-    Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]")]),
-    Password: new FormControl("", Validators.required),
-    Email: new FormControl("", [Validators.required, Validators.email]),
-    Birthday: new FormControl("", Validators.required),
-  });
+  public updateUserForm: FormGroup|any;
 
   constructor(
     public dialog: MatDialog,
@@ -33,6 +27,12 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit(): void { 
     this.getUser();
     this.getMovies();
+    this.updateUserForm = new FormGroup({
+      Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]")]),
+      Password: new FormControl("", Validators.required),
+      Email: new FormControl("", [Validators.required, Validators.email]),
+      Birthday: new FormControl("", Validators.required),
+    });
   }
 
   // retrieve username from storage and use to fetch and set userDetails
