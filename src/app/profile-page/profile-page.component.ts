@@ -15,7 +15,7 @@ import { DataService } from "../data.service";
 export class ProfilePageComponent implements OnInit {
   userDetails: any = {}; // user object
   favoriteMovies: any[] = []; // favorite movie objects
-  public updateUserForm: FormGroup|any;
+  public updateUserForm: FormGroup|any; // declare formGroup
 
   constructor(
     public dialog: MatDialog,
@@ -30,6 +30,7 @@ export class ProfilePageComponent implements OnInit {
     this.getMovies();
   }
 
+  // initialize the formGroup when the component initializes
   initializeForm(): any {
     this.updateUserForm = new FormGroup({
       Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]")]),
