@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule, provideHttpClient, withFetch } from "@angular/common/http";
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 
 import { MatInputModule } from "@angular/material/input";
@@ -54,6 +54,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatToolbarModule,
     MatButtonModule,
