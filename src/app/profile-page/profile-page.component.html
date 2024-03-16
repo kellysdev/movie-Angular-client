@@ -10,41 +10,54 @@
         </div>
         <div class="update-info">
           <h2>Update Account Information</h2>
-          <mat-form-field appearance="outline" color="accent">
-            <input
-              matInput
-              placeholder="Username"
-              type="text"
-              name="Username"
-            >
-          </mat-form-field>
-          <mat-form-field appearance="outline" color="accent">
-            <input
-              matInput
-              placeholder="Password"
-              type="password"
-              name="Password"
-            >
-          </mat-form-field>
-          <mat-form-field appearance="outline" color="accent">
-            <input
-              matInput
-              placeholder="Email"
-              type="email"
-              name="Email"
-            >
-          </mat-form-field>
-          <mat-form-field appearance="outline" color="accent">
-            <input
-              matInput
-              placeholder="Birthday"
-              type="date"
-              name="Birthday"
-            >
-          </mat-form-field>
-          <button
-            mat-raised-button
-          >Submit</button>
+          <p>To update your information: please fill in each field below, changing whichever one you would like.</p>
+          <form [formGroup]="updateUserForm" (ngSubmit)="updateUserInfo()">
+            <mat-form-field appearance="fill" color="accent">
+              <input
+                matInput
+                id="Username"
+                formControlName="Username"
+                placeholder="Username"
+                type="text"
+                name="Username"
+              >
+            </mat-form-field>
+            <mat-form-field appearance="fill" color="accent">
+              <input
+                matInput
+                id="Password"
+                formControlName="Password"
+                placeholder="Password"
+                type="password"
+                name="Password"
+              >
+            </mat-form-field>
+            <mat-form-field appearance="fill" color="accent">
+              <input
+                matInput
+                id="Email"
+                formControlName="Email"
+                placeholder="Email"
+                type="email"
+                name="Email"
+              >
+            </mat-form-field>
+            <mat-form-field appearance="fill" color="accent">
+              <input
+                matInput
+                id="Birthday"
+                formControlName="Birthday"
+                placeholder="Birthday"
+                type="date"
+                name="Birthday"
+              >
+            </mat-form-field>
+            <button
+              mat-raised-button
+              type="submit"
+              color="primary"
+            >Submit</button>
+          </form>
         </div>
       </div>
 
