@@ -5,9 +5,12 @@
 }
 
 .account-wrapper {
-  padding-inline: 50px;
-  margin-inline: 5%;
+  margin-left: 5%;
   margin-bottom: 5%;
+}
+
+b {
+  letter-spacing: 1px;
 }
 
 mat-form-field {
@@ -16,12 +19,23 @@ mat-form-field {
 }
 
 .profile-movies-wrapper {
-  padding-inline: 50px;
-  margin-inline: 5%;
+  margin-left: 5%;
 }
 
 .profile-movie-card-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 10px;
+}
+
+@media (max-width: 600px) {
+  .account-wrapper {
+    width: 90%;
+  }
+}
+
+@media (min-width: 601px) {
+  .account-wrapper {
+    width: 35%;
+  }
 }
