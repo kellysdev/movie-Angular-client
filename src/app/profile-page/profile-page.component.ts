@@ -25,8 +25,12 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void { 
+    this.initializeForm();
     this.getUser();
     this.getMovies();
+  }
+
+  initializeForm(): any {
     this.updateUserForm = new FormGroup({
       Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]")]),
       Password: new FormControl("", Validators.required),
