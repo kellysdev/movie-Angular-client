@@ -58,9 +58,18 @@ export class ProfilePageComponent implements OnInit {
 
   // update user info
   updateUserInfo(): void {
-    this.fetchApiData.updateUser(this.userDetails).subscribe((resp: any) => {
+    // send current username of logged in user
+    let username: string = this.userDetails.Username;
+
+    // data from form = newUserDetails
+    console.log(this.updateUserForm.value);
+    let newUserDetails = JSON.stringify(this.updateUserForm.values);
+
+    // make PUT API request and handle response
+    this.fetchApiData.updateUser(newUserDetails, username).subscribe((resp: any) => {
       if (!Error) {
         this.userDetails = resp;
+        this.dataService.setUsername(this.userDetails.Username);
         this.snackBar.open("Success!", "OK", {
           duration: 2000
         });
