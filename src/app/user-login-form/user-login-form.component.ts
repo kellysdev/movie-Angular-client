@@ -30,7 +30,7 @@ export class UserLoginFormComponent implements OnInit {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       if (result.user) {
         const username = JSON.stringify(result.user.Username);
-        this.dataService.setUsername(username);
+        this.dataService.setUsername(JSON.parse(username));
         localStorage.setItem("token", result.token);
         this.dialogRef.close(); // closes modal on success
         // snackbar alerts user

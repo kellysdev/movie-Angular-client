@@ -9,7 +9,7 @@ export class DataService {
 
   // set Username in localStorage
   setUsername(username: string): void {
-    localStorage.setItem("username", JSON.parse(username));
+    localStorage.setItem("username", username);
   }
 
   // retrieve Username from localStorage
