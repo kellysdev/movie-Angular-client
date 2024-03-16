@@ -62,19 +62,19 @@ export class ProfilePageComponent implements OnInit {
     let username: string = this.userDetails.Username;
 
     // data from form = newUserDetails
-    console.log(this.updateUserForm.value);
-    let newUserDetails = JSON.stringify(this.updateUserForm.values);
+    let newUserDetails = this.updateUserForm.value;
 
     // make PUT API request and handle response
-    this.fetchApiData.updateUser(newUserDetails, username).subscribe((resp: any) => {
-      if (!Error) {
-        this.userDetails = resp;
+    this.fetchApiData.updateUser(newUserDetails, username).subscribe({
+      next: (result => {
+        this.userDetails = result;
         this.dataService.setUsername(this.userDetails.Username);
         this.snackBar.open("Success!", "OK", {
           duration: 2000
         });
-      } else {
-        console.log("User update error:", Error);
+      }),
+      error: (error) => {
+        console.log("User update error:", error);
         this.snackBar.open("Something went wrong.", "Try again", {
           duration: 2000
         });
