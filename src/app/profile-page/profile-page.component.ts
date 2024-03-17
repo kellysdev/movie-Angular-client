@@ -28,8 +28,7 @@ export class ProfilePageComponent implements OnInit {
     public dataService: DataService ) {  
   }
 
-  ngOnInit(): void { 
-
+  ngOnInit(): void {
     this.initializeForm();
     this.getUser();
     this.getMovies();
@@ -38,7 +37,7 @@ export class ProfilePageComponent implements OnInit {
   // initialize the formGroup when the component initializes
   initializeForm(): any {
     this.updateUserForm = new FormGroup({
-      Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]")]),
+      Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]"), Validators.minLength(3)]),
       Password: new FormControl("", Validators.required),
       Email: new FormControl("", [Validators.required, Validators.email]),
       Birthday: new FormControl("", Validators.required),
