@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { DataService } from '../data.service';
 
@@ -9,9 +9,21 @@ import { DataService } from '../data.service';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
+  parent: string = "";
+
   constructor(
     private router: Router,
-    private dataService: DataService) { }
+    private route: ActivatedRoute,
+    private dataService: DataService) {
+  }
+
+  ngOnInit() {
+    this.route.url.subscribe(([url]) => {
+      const { path, parameters } = url;
+      this.parent = path;
+      console.log(this.parent);
+    });
+  }
 
   goToProfile(): void {
     this.router.navigate(["profile"]);
