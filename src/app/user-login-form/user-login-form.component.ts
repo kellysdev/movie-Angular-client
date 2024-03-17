@@ -34,12 +34,12 @@ export class UserLoginFormComponent implements OnInit {
         localStorage.setItem("token", result.token);
         this.dialogRef.close(); // closes modal on success
         // snackbar alerts user
-        this.snackBar.open(result, "Login successful", {
+        this.snackBar.open("Login successful!", "OK", {
           duration: 2000
         });
         this.router.navigate(["movies"]);
       } else {
-        this.snackBar.open(result, "Something went wrong", {
+        this.snackBar.open("Something went wrong.", "Try again.", {
           duration: 2000
         });
       }
