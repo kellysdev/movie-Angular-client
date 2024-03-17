@@ -20,6 +20,9 @@
               type="text"
               name="Username"
             >
+            <mat-error>Username is required.</mat-error>
+            <mat-error>Username must be alphanumeric.</mat-error>
+            <mat-error>Username must be at least 3 characters.</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" color="accent">
             <input
@@ -30,6 +33,7 @@
               type="password"
               name="Password"
             >
+            <mat-error>Password is required.</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" color="accent">
             <input
@@ -40,6 +44,8 @@
               type="email"
               name="Email"
             >
+            <mat-error>Email is required.</mat-error>
+            <mat-error>Please enter a valid email.</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" color="accent">
             <input
@@ -50,6 +56,7 @@
               type="date"
               name="Birthday"
             >
+            <mat-error>Birthday is required.</mat-error>
           </mat-form-field>
           <button
             class="update-info-button"

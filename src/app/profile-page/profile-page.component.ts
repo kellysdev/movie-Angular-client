@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormBuilder, Validators, FormGroup } from "@angular/forms";
 
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -12,37 +12,35 @@ import { DataService } from "../data.service";
 @Component({
   selector: "app-profile-page",
   templateUrl: "./profile-page.component.html",
-  styleUrl: "./profile-page.component.scss"
+  styleUrls: ["./profile-page.component.scss"]
 })
 export class ProfilePageComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   userDetails: any = {}; // user object
   username: string = ""; // user username
   favoriteMovies: any[] = []; // favorite movie objects
-  public updateUserForm: FormGroup|any; // declare formGroup
+  // public updateUserForm: FormGroup|any; // declare formGroup
+  updateUserForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     public fetchApiData: FetchApiDataService,
-    public dataService: DataService ) {  
+    public dataService: DataService ) {
+      this.updateUserForm = this.fb.group({
+        Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]"), Validators.minLength(3)]),
+        Password: new FormControl("", Validators.required),
+        Email: new FormControl("", [Validators.required, Validators.email]),
+        Birthday: new FormControl("", Validators.required),
+      });
   }
 
   ngOnInit(): void {
-    this.initializeForm();
     this.getUser();
     this.getMovies();
   }
 
-  // initialize the formGroup when the component initializes
-  initializeForm(): any {
-    this.updateUserForm = new FormGroup({
-      Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]"), Validators.minLength(3)]),
-      Password: new FormControl("", Validators.required),
-      Email: new FormControl("", [Validators.required, Validators.email]),
-      Birthday: new FormControl("", Validators.required),
-    });
-  }
 
   // retrieve username from storage and use to fetch and set userDetails
   // retrive array of favorite movie ids from user object
