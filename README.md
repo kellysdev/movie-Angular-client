@@ -46,5 +46,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 - [ ] Add director images.
 - [ ] Display all movies for a director in the director dialog.
-- [ ] Add a sort movies by criteria feature.
+- [ ] Display all movies for a genre in the genre dialog.
+- [ ] Add search functionality.
 - [ ] Allow users to curate a "To Watch" list.
