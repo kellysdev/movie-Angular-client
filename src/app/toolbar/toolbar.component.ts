@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  parent: string = "";
+  parent: string = ""; // parent component path name
 
   constructor(
     private router: Router,
@@ -21,7 +21,6 @@ export class ToolbarComponent {
     this.route.url.subscribe(([url]) => {
       const { path, parameters } = url;
       this.parent = path;
-      console.log(this.parent);
     });
   }
 
