@@ -90,7 +90,7 @@ export class ProfilePageComponent implements OnInit {
     this.dialogConfig.data = {
       username: this.userDetails.Username
     }
-    this.dialog.open(DeleteAccountComponent);
+    this.dialog.open(DeleteAccountComponent, this.dialogConfig);
   }
 
 }
