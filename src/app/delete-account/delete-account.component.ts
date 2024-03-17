@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
@@ -20,6 +20,7 @@ export class DeleteAccountComponent implements OnInit{
     private router: Router,
     public fetchApiData: FetchApiDataService,
     public dataService: DataService,
+    public dialogRef: MatDialogRef<DeleteAccountComponent>,
     public snackBar: MatSnackBar) {
   }
 
@@ -36,6 +37,7 @@ export class DeleteAccountComponent implements OnInit{
       next: (result => {
         console.log(result);
         this.dataService.logout()
+        this.dialogRef.close();
         this.router.navigate(["welcome"]);
       }),
       error: (error) => {
