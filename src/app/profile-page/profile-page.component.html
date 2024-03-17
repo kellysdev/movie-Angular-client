@@ -6,7 +6,7 @@
         <h2>Account Information</h2>
         <p><b>Username:</b> {{userDetails.Username}}</p>
         <p><b>Email:</b> {{userDetails.Email}}</p>
-        <p><b>Birthday:</b> {{userDetails.Birthday | date}}</p>
+        <p><b>Birthday:</b> {{userDetails.Birthday | date: "shortDate":"UTC+1"}}</p>
       </div>
       <div class="update-info">
         <h2>Update Account Information</h2>
