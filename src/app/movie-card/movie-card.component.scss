@@ -1,24 +1,28 @@
 mat-card {
   background-color: rgba(63, 63, 63, 0.7);
-  max-width: 330px;
-  max-height: 500px;
+  max-width: 380px;
+  max-height: 600px;
+  min-height: 520px;
   border-radius: 10px;
   padding: 20px;
 }
 
 mat-card-content {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px;
+}
+
+.titles {
+  margin-left: 1rem;
 }
 
 .card-image {
-  max-height: 300px!important;
+  max-height: 320px!important;
 }
 
 mat-card-title {
-  margin-top: 10px;
+  margin-top: 1rem;
   font-weight: 400;
   font-size: large;
   color: rgb(230, 230, 230);
@@ -28,7 +32,16 @@ mat-card-subtitle {
   color: rgb(230, 230, 230);
 }
 
+mat-card-actions {
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 button {
   margin-inline: 5px;
+  padding: 0 5px 0 5px;
+}
+
+.synopsis-button {
   padding: 0 5px 0 5px;
 }
