@@ -1,22 +1,25 @@
 <mat-toolbar>
   <h1 class="logo-font">PopOpolis</h1>
   <span class="toolbar-spacer"></span>
+  @if (parent==="profile") {
+    <button 
+      mat-icon-button 
+      class="home-icon"
+      (click)="goToMovies()"
+      aria-label="icon-button to navigate to movies page">
+        <mat-icon>home</mat-icon>
+    </button>
+  }
 
-  <button 
-    mat-icon-button 
-    class="home-icon"
-    (click)="goToMovies()"
-    aria-label="icon-button to navigate to movies page">
-      <mat-icon>home</mat-icon>
-  </button>
-
-  <button 
-    mat-icon-button 
-    class="profile-icon"
-    (click)="goToProfile()"
-    aria-label="icon-button to navigate to user profile">
-      <mat-icon>person</mat-icon>
-  </button>
+  @if (parent==="movies") {
+    <button 
+      mat-icon-button 
+      class="profile-icon"
+      (click)="goToProfile()"
+      aria-label="icon-button to navigate to user profile">
+        <mat-icon>person</mat-icon>
+    </button>
+  }
 
   <button 
     mat-icon-button 
