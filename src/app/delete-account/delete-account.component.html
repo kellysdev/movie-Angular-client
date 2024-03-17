@@ -1,16 +1,23 @@
-<h2 style="text-align: center;">Confirm Account Deletion</h2>
-<mat-dialog-content>
-  <p>Are you sure you would like to permanently delete your account?</p>
-</mat-dialog-content>
-<mat-dialog-actions style="justify-content: center;">
-  <button
-    mat-button
-    color="warn"
-    (click)="deleteAccount()"
-  >Delete Account</button>
-  <button
-    mat-button
-    color="accent"
-    mat-dialog-close
-  >Cancel</button>
-</mat-dialog-actions>
+<div class="delete-dialog-wrapper">
+  <h2 style="text-align: center;">Confirm Account Deletion</h2>
+  <mat-dialog-content>
+    <p>
+      <b>Are you sure you would like to permanently delete your account?</b>
+      <br>
+      You will be logged out and your account information will be deleted.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions style="justify-content: center;">
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteAccount()"
+    >Delete Account</button>
+    <button
+      mat-raised-button
+      color="accent"
+      mat-dialog-close
+      style="margin-left: 15px;"
+    >Cancel</button>
+  </mat-dialog-actions>
+</div>
