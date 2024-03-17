@@ -3,67 +3,70 @@
   <div class="profile-wrapper">
     <div class="account-wrapper">
       <div class="account-info">
-          <h2>Account Information</h2>
-          <p><b>Username:</b> {{userDetails.Username}}</p>
-          <p><b>Email:</b> {{userDetails.Email}}</p>
-          <p><b>Birthday:</b> {{userDetails.Birthday | date}}</p>
-        </div>
-        <div class="update-info">
-          <h2>Update Account Information</h2>
-          <form [formGroup]="updateUserForm" (ngSubmit)="updateUserInfo()">
-            <mat-form-field appearance="fill" color="accent">
-              <input
-                matInput
-                id="Username"
-                formControlName="Username"
-                placeholder="Username"
-                type="text"
-                name="Username"
-              >
-            </mat-form-field>
-            <mat-form-field appearance="fill" color="accent">
-              <input
-                matInput
-                id="Password"
-                formControlName="Password"
-                placeholder="Password"
-                type="password"
-                name="Password"
-              >
-            </mat-form-field>
-            <mat-form-field appearance="fill" color="accent">
-              <input
-                matInput
-                id="Email"
-                formControlName="Email"
-                placeholder="Email"
-                type="email"
-                name="Email"
-              >
-            </mat-form-field>
-            <mat-form-field appearance="fill" color="accent">
-              <input
-                matInput
-                id="Birthday"
-                formControlName="Birthday"
-                placeholder="Birthday"
-                type="date"
-                name="Birthday"
-              >
-            </mat-form-field>
-            <button
-              mat-raised-button
-              type="submit"
-              color="primary"
-            >Update</button>
-          </form>
-          <button
-            mat-button
-            color="warn"
-            (click)="openConfirmDeleteDialog()"
-          > or Delete Account</button>
-        </div>
+        <h2>Account Information</h2>
+        <p><b>Username:</b> {{userDetails.Username}}</p>
+        <p><b>Email:</b> {{userDetails.Email}}</p>
+        <p><b>Birthday:</b> {{userDetails.Birthday | date}}</p>
       </div>
+      <div class="update-info">
+        <h2>Update Account Information</h2>
+        <form [formGroup]="updateUserForm" (ngSubmit)="updateUserInfo()">
+          <mat-form-field appearance="fill" color="accent">
+            <input
+              matInput
+              id="Username"
+              formControlName="Username"
+              placeholder="Username"
+              type="text"
+              name="Username"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="accent">
+            <input
+              matInput
+              id="Password"
+              formControlName="Password"
+              placeholder="Password"
+              type="password"
+              name="Password"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="accent">
+            <input
+              matInput
+              id="Email"
+              formControlName="Email"
+              placeholder="Email"
+              type="email"
+              name="Email"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="accent">
+            <input
+              matInput
+              id="Birthday"
+              formControlName="Birthday"
+              placeholder="Birthday"
+              type="date"
+              name="Birthday"
+            >
+          </mat-form-field>
+          <button
+            class="update-info-button"
+            mat-raised-button
+            type="submit"
+            color="primary"
+          >Update</button>
+        </form>
+      </div>
+      <button
+        class="delete-dialog-button"
+        mat-button
+        color="warn"
+        (click)="openConfirmDeleteDialog()"
+      > or Delete Account</button>
+    </div>
+      
 
     <div class="profile-movies-wrapper">
       <h2>Favorite Movies</h2>
