@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { DeleteAccountComponent } from "../delete-account/delete-account.component";
@@ -15,6 +15,7 @@ import { DataService } from "../data.service";
   styleUrl: "./profile-page.component.scss"
 })
 export class ProfilePageComponent implements OnInit {
+  dialogConfig = new MatDialogConfig();
   userDetails: any = {}; // user object
   favoriteMovies: any[] = []; // favorite movie objects
   public updateUserForm: FormGroup|any; // declare formGroup
@@ -86,6 +87,9 @@ export class ProfilePageComponent implements OnInit {
 
   // open an dialog to confirm the user wants to delete their account
   openConfirmDeleteDialog(): void {
+    this.dialogConfig.data = {
+      username: this.userDetails.Username
+    }
     this.dialog.open(DeleteAccountComponent);
   }
 
