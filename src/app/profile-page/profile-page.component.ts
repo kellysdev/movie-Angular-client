@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
+import { DeleteAccountComponent } from "../delete-account/delete-account.component";
+
 import { FetchApiDataService } from "../fetch-api-data.service";
 import { DataService } from "../data.service";
 
@@ -80,6 +82,11 @@ export class ProfilePageComponent implements OnInit {
         });
       }
     });
+  }
+
+  // open an dialog to confirm the user wants to delete their account
+  openConfirmDeleteDialog(): void {
+    this.dialog.open(DeleteAccountComponent);
   }
 
 }
