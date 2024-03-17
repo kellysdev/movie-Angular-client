@@ -20,11 +20,13 @@ export class DeleteAccountComponent implements OnInit{
     private router: Router,
     public fetchApiData: FetchApiDataService,
     public dataService: DataService,
-    public snackBar: MatSnackBar) {}
+    public snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     // accept username data from ProfilePage component
-    this.username = this.data.Username;
+    this.username = this.data.username;
+    console.log(this.username);
   }
 
   // when the delete account button is clicked, delete the users account

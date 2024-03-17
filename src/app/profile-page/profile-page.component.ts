@@ -17,6 +17,7 @@ import { DataService } from "../data.service";
 export class ProfilePageComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   userDetails: any = {}; // user object
+  username: string = ""; // user username
   favoriteMovies: any[] = []; // favorite movie objects
   public updateUserForm: FormGroup|any; // declare formGroup
 
@@ -28,6 +29,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void { 
+
     this.initializeForm();
     this.getUser();
     this.getMovies();
@@ -49,6 +51,7 @@ export class ProfilePageComponent implements OnInit {
     const username = this.dataService.getUsername();
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
+      this.username = this.userDetails.Username;
     });
   }
 
@@ -61,14 +64,11 @@ export class ProfilePageComponent implements OnInit {
 
   // update user info
   updateUserInfo(): void {
-    // send current username of logged in user
-    let username: string = this.userDetails.Username;
-
     // data from form = newUserDetails
     let newUserDetails = this.updateUserForm.value;
 
     // make PUT API request and handle response
-    this.fetchApiData.updateUser(newUserDetails, username).subscribe({
+    this.fetchApiData.updateUser(newUserDetails, this.username).subscribe({
       next: (result => {
         this.userDetails = result;
         this.dataService.setUsername(this.userDetails.Username);
@@ -88,7 +88,7 @@ export class ProfilePageComponent implements OnInit {
   // open an dialog to confirm the user wants to delete their account
   openConfirmDeleteDialog(): void {
     this.dialogConfig.data = {
-      username: this.userDetails.Username
+      username: this.username
     }
     this.dialog.open(DeleteAccountComponent, this.dialogConfig);
   }
