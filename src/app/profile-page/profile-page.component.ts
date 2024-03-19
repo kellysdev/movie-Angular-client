@@ -19,7 +19,6 @@ export class ProfilePageComponent implements OnInit {
   userDetails: any = {}; // user object
   username: string = ""; // user username
   favoriteMovies: any[] = []; // favorite movie objects
-  // public updateUserForm: FormGroup|any; // declare formGroup
   updateUserForm: FormGroup;
 
   constructor(
@@ -40,7 +39,6 @@ export class ProfilePageComponent implements OnInit {
     this.getUser();
     this.getMovies();
   }
-
 
   // retrieve username from storage and use to fetch and set userDetails
   // retrive array of favorite movie ids from user object
