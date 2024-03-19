@@ -18,6 +18,11 @@ export class MainViewComponent {
     this.getMovies();
   }
 
+  /**
+   * @function
+   * @name getMovies
+   * @returns {array{}} Array of movie objects.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
