@@ -13,8 +13,8 @@ export class GenreViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  /** Receives genre data from Movie Card parent component. */
   ngOnInit(): void {
-    // pass genre data from MovieCard to this.Genre
     this.Genre = this.data.Genre;
   }
 }
