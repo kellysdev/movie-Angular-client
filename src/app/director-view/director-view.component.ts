@@ -13,8 +13,8 @@ export class DirectorViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
    ) { }
 
+  /** Receives director data from Movie Card parent component. */
   ngOnInit(): void { 
-    // pass the data from MovieCard to this component's Director variable
     this.Director = this.data.Director;
    }
 
