@@ -21,6 +21,7 @@ export class MovieCardComponent {
   favoriteMovies: any = []; // userDetails.FavoriteMovies
   isThisAFavorite: boolean = false; // is this movie in the favoriteMovies array
 
+  /** Receives movie data from Main View parent component. */
   @Input() movie = {
     _id: "",
     Title: "",
@@ -59,12 +60,17 @@ export class MovieCardComponent {
     
   }
 
-  // determine whether this movie is in the favorite movies array
+  /**
+   * @function
+   * @namme isMovieInFavorites
+   * @returns {boolean}
+   * @description Determines whether the movie for this movie card is in the favorite movies array.
+   */
   isMovieInFavorites() {
     this.isThisAFavorite = this.favoriteMovies.includes(this.movie._id);
   }
 
-  // open Director dialog and pass Director data to DirectorView component
+  /** Open dialog that contains Director View component and pass director data to it. */
   openDirectorDialog() {
     this.dialogConfig.data = {
       Director: this.movie.Director
@@ -72,7 +78,7 @@ export class MovieCardComponent {
     this.dialog.open(DirectorViewComponent, this.dialogConfig);
   }
 
-  // open Genre dialog and pass Genre data to GenreView component
+  /** Open dialog that contains Genre View component and pass genre data to it. */
   openGenreDialog() {
     this.dialogConfig.data = {
       Genre: this.movie.Genre
@@ -80,7 +86,7 @@ export class MovieCardComponent {
     this.dialog.open(GenreViewComponent, this.dialogConfig);
   }
 
-  // open movie Synopsis dialog and pass movie data to SynopsisView component
+  /** Open dialog that contains Synopsis View componen and pass movie data to it. */
   openSynopsisDialog() {
     this.dialogConfig.data = {
       Synopsis: this.movie
@@ -88,7 +94,15 @@ export class MovieCardComponent {
     this.dialog.open(SynopsisViewComponent, this.dialogConfig);
   }
 
-  // add a movie to this users list of favorite movies
+  /**
+   * @function
+   * @name addToFavorites
+   * @param {string} this.movie._id
+   * @param {object} userDetails
+   * @returns {boolean} isThisAFavorite
+   * @throws {Error} SnackBar alerts user if there was an error and console logs the error.
+   * @throws {Error} fetchApiDataService error handler will console log error details.
+   */
   addToFavorites() {
     this.fetchApiData.addFavoriteMovie(this.movie._id, this.userDetails).subscribe({
       next: (result => {
@@ -106,6 +120,15 @@ export class MovieCardComponent {
     });
   }
 
+    /**
+   * @function
+   * @name removeFromFavorites
+   * @param {string} this.movie._id
+   * @param {object} userDetails
+   * @returns {boolean} isThisAFavorite
+   * @throws {Error} SnackBar alerts user if there was an error and console logs the error.
+   * @throws {Error} fetchApiDataService error handler will console log error details.
+   */
   removeFromFavorites() {
     this.fetchApiData.removeFavoriteMovie(this.movie._id, this.userDetails).subscribe({
       next: (result => {
