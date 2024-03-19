@@ -23,6 +23,7 @@ export class UserRegistrationFormComponent implements OnInit {
 
   /**
    * @function
+   * @name registerUser
    * @param {object} userData
    * @returns User data is sent to the database.
    * @throws {Error} SnackBar notifies user if there was an error.
