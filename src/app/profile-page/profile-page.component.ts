@@ -40,8 +40,14 @@ export class ProfilePageComponent implements OnInit {
     this.getMovies();
   }
 
-  // retrieve username from storage and use to fetch and set userDetails
-  // retrive array of favorite movie ids from user object
+  /**
+   * @function
+   * @name getUser
+   * @returns {object} User object
+   * @returns {string} Username
+   * @description Retrieves the username from localStorage and uses it to fetch the most recent user object data.
+   * 
+   */
   getUser(): void {
     const username = this.dataService.getUsername();
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
@@ -50,14 +56,27 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /**
+   * @function
+   * @name getMovies
+   * @returns {array{}}
+   * @description Fetches all movies but only returns movies that have an id that matches the ids in the user's favorite movies array.
+   */
   getMovies(): void {
-    // fetch all movies and return only favoriteMovies
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.favoriteMovies = resp.filter((m: {_id: any}) => this.userDetails.FavoriteMovies.indexOf(m._id) >= 0);
     });
   }
 
-  // update user info
+  /**
+   * @function
+   * @name updateUserInfo
+   * @param {object} newUserDetails from form inputs.
+   * @returns {object} Updated user object.
+   * @returns Sets new username in localStorage.
+   * @throws {Error} Console logs error.
+   * @throws {Error} SnackBar alerts user if there was an error.
+   */
   updateUserInfo(): void {
     // data from form = newUserDetails
     let newUserDetails = this.updateUserForm.value;
@@ -80,7 +99,7 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  // open an dialog to confirm the user wants to delete their account
+  /** Opens a dialog that contains Delete Account component. */
   openConfirmDeleteDialog(): void {
     this.dialogConfig.data = {
       username: this.username
