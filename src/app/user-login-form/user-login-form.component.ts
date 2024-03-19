@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
-// import services
 import { FetchApiDataService } from "../fetch-api-data.service";
 import { DataService } from "../data.service";
 
@@ -14,6 +13,7 @@ import { DataService } from "../data.service";
   styleUrl: "./user-login-form.component.scss"
 })
 export class UserLoginFormComponent implements OnInit {
+  /** Data from inputs in form are saved to userData object */
  @Input() userData = { Username: "", Password: "" };
 
  constructor(
@@ -25,7 +25,15 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  // call login function from API service
+  /**
+   * @function
+   * @name loginUser
+   * @param {object} userData
+   * @returns Username and token are stored in localStorage.
+   * @fires Router#NavigateToMoviesPage
+   * @throws {Error} SnackBar notifies user if there was an error.
+   * @throws {Error} fetchApiDataService error handler will console log error details.
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
       if (result.user) {
