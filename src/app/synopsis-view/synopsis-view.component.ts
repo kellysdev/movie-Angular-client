@@ -15,7 +15,6 @@ export class SynopsisViewComponent implements OnInit {
 
   /** Receives movie data from Movie Card parent component. */
   ngOnInit(): void {
-    // pass the data from MovieCard to this component's Synopsis variable
     this.Synopsis = this.data.Synopsis;
   }
 }
