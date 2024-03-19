@@ -16,6 +16,7 @@ import { UserRegistrationFormComponent } from "../user-registration-form/user-re
   styleUrl: "./welcome-page.component.scss"
 })
 export class WelcomePageComponent implements OnInit {
+  // Define guest login credentials
   userData: object = {
     Username: "guest",
     Password: "guest"
@@ -31,18 +32,29 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /** Opens dialog which contains User Registration Component */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: "280px"
     });
   }
 
+  /** Opens dialog which contains User Login Form Component */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: "280px"
     });
   }
 
+  /**
+   * @function guestLogin
+   * @param {object} GuestCredentials
+   * @returns Token and username are stored in localStorage.
+   * @fires NavigateToMoviesPage
+   * @throws {Error} SnackBar will alert the user if an error was encountered.
+   * @throws {Error} fetchApiDataService error handler will console log error details.
+   * @description Allows a user to login without creating an account.
+    */
   guestLogin() {
      this.fetchApiDataService.userLogin(this.userData).subscribe((result) => {
       if (result.user) {
