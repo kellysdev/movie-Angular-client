@@ -13,18 +13,25 @@ b {
   letter-spacing: 1px;
 }
 
-mat-form-field {
-  display: grid;
+form {
   max-width: 500px;
 }
 
+mat-form-field {
+  display: grid;
+}
+
 .update-info-button {
-  float: right;
-  margin-left: auto;
+  margin-left: 70%;
+  display: inline-block;
+}
+
+.delete-button-wrapper {
+  max-width: 500px;
 }
 
 .delete-dialog-button {
-  margin-left: 68%;
+  margin-left: 70%;
   width: 150px;
 }
 
