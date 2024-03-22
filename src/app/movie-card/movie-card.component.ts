@@ -107,7 +107,7 @@ export class MovieCardComponent {
     this.fetchApiData.addFavoriteMovie(this.movie._id, this.userDetails).subscribe({
       next: (result => {
         this.isThisAFavorite = true;
-        this.snackBar.open(this.movie.Title, "Added to Favorite Movies", {
+        this.snackBar.open("Added to Favorite Movies", "OK", {
           duration: 2000
         });
       }),
@@ -133,7 +133,7 @@ export class MovieCardComponent {
     this.fetchApiData.removeFavoriteMovie(this.movie._id, this.userDetails).subscribe({
       next: (result => {
         this.isThisAFavorite = false;
-        this.snackBar.open(this.movie.Title, "Removed from Favorite Movies", {
+        this.snackBar.open("Removed from Favorite Movies", "OK", {
           duration: 2000
         });
       }),
