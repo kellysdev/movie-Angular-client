@@ -44,8 +44,6 @@ export class DeleteAccountComponent implements OnInit{
    * @throws {Error} fetchApiDataService error handler will console log error details.
    * @description Deletes the user account when the delete account button is clicked.  On success, the dialog closes and the user is redirected to the welcome page.
    */
-  // when the delete account button is clicked, delete the users account
-  // this will log them out and send them back to the welcome page
   deleteAccount(): void {
     this.fetchApiData.deleteUser(this.username).subscribe({
       next: (result => {
