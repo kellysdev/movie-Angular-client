@@ -58,11 +58,22 @@
             >
             <mat-error>Birthday is required.</mat-error>
           </mat-form-field>
-          <button
-            class="update-info-button"
-            mat-raised-button
-            type="submit"
-          >Update</button>
+          @if ("isUserGuest") {
+            <button
+              class="update-info-button"
+              mat-raised-button
+              type="submit"
+              [disabled]="isUserGuest"
+              disabledInteractive
+            >Update</button>
+          }
+          @else {
+            <button
+              class="update-info-button"
+              mat-raised-button
+              type="submit"
+            >Update</button>
+          }
         </form>
       </div>
       <div class="delete-button-wrapper">

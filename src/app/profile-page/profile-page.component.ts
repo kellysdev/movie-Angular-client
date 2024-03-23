@@ -20,6 +20,7 @@ export class ProfilePageComponent implements OnInit {
   username: string = ""; // user username
   favoriteMovies: any[] = []; // favorite movie objects
   updateUserForm: FormGroup;
+  isUserGuest: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -28,10 +29,10 @@ export class ProfilePageComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dataService: DataService ) {
       this.updateUserForm = this.fb.group({
-        Username: new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z0-9]"), Validators.minLength(3)]),
-        Password: new FormControl("", Validators.required),
-        Email: new FormControl("", [Validators.required, Validators.email]),
-        Birthday: new FormControl("", Validators.required),
+        Username: new FormControl({value: "guest", disabled: true}, [Validators.required, Validators.pattern("[a-zA-Z0-9]"), Validators.minLength(3)]),
+        Password: new FormControl({value: "guest", disabled: true}, Validators.required),
+        Email: new FormControl({value: "guest", disabled: true}, [Validators.required, Validators.email]),
+        Birthday: new FormControl({value: "guest", disabled: true}, Validators.required),
       });
   }
 
@@ -53,6 +54,11 @@ export class ProfilePageComponent implements OnInit {
     this.fetchApiData.getSingleUser(username).subscribe((resp: any) => {
       this.userDetails = resp;
       this.username = this.userDetails.Username;
+      if (this.username === "guest") {
+        this.isUserGuest = true;
+      } else {
+        this.isUserGuest = false;
+      }
     });
   }
 
@@ -92,9 +98,15 @@ export class ProfilePageComponent implements OnInit {
       }),
       error: (error) => {
         console.log("User update error:", error);
-        this.snackBar.open("Something went wrong.", "Try again", {
-          duration: 2000
-        });
+        if (this.username === "guest") {
+          this.snackBar.open("Cannot edit guest account.", "OK", {
+            duration: 2000
+          })
+        } else {
+          this.snackBar.open("Something went wrong.", "Try again", {
+            duration: 2000
+          });
+        }
       }
     });
   }
