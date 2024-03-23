@@ -49,16 +49,10 @@ export class DeleteAccountComponent implements OnInit{
   deleteAccount(): void {
     this.fetchApiData.deleteUser(this.username).subscribe({
       next: (result => {
-        if (this.isUserGuest) {
-          this.snackBar.open("Cannot delete guest.", "OK", {
-            duration: 2000
-          });
-        } else {
-          console.log(result);
-          this.dataService.logout()
-          this.dialogRef.close();
-          this.router.navigate(["welcome"]);
-        }
+        console.log(result);
+        this.dataService.logout()
+        this.dialogRef.close();
+        this.router.navigate(["welcome"]);
       }),
       error: (error) => {
         console.log("Delete user error:", error);
