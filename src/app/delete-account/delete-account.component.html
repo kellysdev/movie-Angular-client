@@ -12,6 +12,8 @@
       mat-raised-button
       color="warn"
       (click)="deleteAccount()"
+      [disabled]="isUserGuest"
+      disabledInteractive
     >Delete Account</button>
     <button
       mat-raised-button

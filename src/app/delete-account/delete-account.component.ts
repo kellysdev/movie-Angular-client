@@ -14,6 +14,7 @@ import { DataService } from "../data.service";
 })
 export class DeleteAccountComponent implements OnInit{
   username: string = "";
+  isUserGuest: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,7 +28,11 @@ export class DeleteAccountComponent implements OnInit{
   /** Receives user data from Profile Page parent component. */
   ngOnInit(): void {
     this.username = this.data.username;
-    console.log(this.username);
+    if (this.username === "guest") {
+      this.isUserGuest = true;
+    } else {
+      this.isUserGuest = false;
+    }
   }
 
   /**
@@ -44,10 +49,16 @@ export class DeleteAccountComponent implements OnInit{
   deleteAccount(): void {
     this.fetchApiData.deleteUser(this.username).subscribe({
       next: (result => {
-        console.log(result);
-        this.dataService.logout()
-        this.dialogRef.close();
-        this.router.navigate(["welcome"]);
+        if (this.isUserGuest) {
+          this.snackBar.open("Cannot delete guest.", "OK", {
+            duration: 2000
+          });
+        } else {
+          console.log(result);
+          this.dataService.logout()
+          this.dialogRef.close();
+          this.router.navigate(["welcome"]);
+        }
       }),
       error: (error) => {
         console.log("Delete user error:", error);
