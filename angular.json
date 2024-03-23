@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "docs",
+            "outputPath": "dist/movie-angular-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
