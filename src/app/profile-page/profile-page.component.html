@@ -65,6 +65,8 @@
               type="submit"
               [disabled]="isUserGuest"
               disabledInteractive
+              matTooltip="Cannot edit guest account."
+              aria-label="Button to update the guest account is disabled."
             >Update</button>
           }
           @else {
@@ -72,6 +74,7 @@
               class="update-info-button"
               mat-raised-button
               type="submit"
+              aria-label="Button to update account information."
             >Update</button>
           }
         </form>
