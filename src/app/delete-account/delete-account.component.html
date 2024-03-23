@@ -8,13 +8,22 @@
     </p>
   </mat-dialog-content>
   <mat-dialog-actions style="justify-content: center;">
-    <button
+    @if (isUserGuest) {
+      <button
       mat-raised-button
       color="warn"
       (click)="deleteAccount()"
       [disabled]="isUserGuest"
-      disabledInteractive
+      matTooltip="Cannot delete guest."
     >Delete Account</button>
+    }
+    @else {
+      <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteAccount()"
+    >Delete Account</button>
+    }
     <button
       mat-raised-button
       color="accent"
