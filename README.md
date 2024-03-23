@@ -38,6 +38,12 @@ Run `ng build --base-href /movie-Angular-client/` to build the project. The buil
 
 Run `ng deploy --base-href=/movie-Angular-client/` to deploy the project to GitHub pages with angular-cli-ghpages.
 
+## Links
+
+The live app is hosted on GitHub pages and can be found [here](https://kellysdev.github.io/movie-Angular-client/welcome).
+
+The server-side repository is linked [here](https://github.com/kellysdev/movie-api).
+
 ## Future Updates
 
 - [ ] Add director images.
